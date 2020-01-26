@@ -5,6 +5,7 @@ services:
   # SERVER
   ###################
   nginx:
+    container_name: nginx
     build: 
       context: ./
       dockerfile: docker/nginx.docker
@@ -21,6 +22,7 @@ services:
   # PHP-FPM
   ###################
   php-fpm:
+    container_name: php-fpm
     build:
       context: ./
       dockerfile: docker/php-fpm.docker
@@ -39,6 +41,7 @@ services:
   # PHP-CLI
   ###################
   php-cli:
+    container_name: php-cli
     build:
       context: ./
       dockerfile: docker/php-cli.docker
@@ -58,6 +61,7 @@ services:
   # MYSQL
   ###################
   mysql:
+    container_name: mysql
     image: mysql:5.7
     volumes: 
       - ./docker/images/mysql:/var/lib/mysql
@@ -77,6 +81,7 @@ services:
   # REDIS
   ###################
   redis:
+    container_name: redis
     image: redis:3.0
     ports:
       - "63791:6379"
@@ -85,6 +90,7 @@ services:
   # NODE
   ###################
   node:
+    container_name: node
     build:
       context: ./
       dockerfile: docker/node.docker
@@ -96,6 +102,7 @@ services:
   # PHPMYADMIN
   ###################
   phpmyadmin:
+    container_name: phpmyadmin
     image: corbinu/docker-phpmyadmin
     ports:
         - 8181:80

@@ -12,7 +12,7 @@ docker-down:
 
 #запустить тестовые тесты laravel
 laravel-test:
-	sudo docker exec app_php-fpm_1 vendor/bin/phpunit
+	sudo docker exec php-fpm vendor/bin/phpunit
 
 #список всех контейнеров
 docker-containers-list:
@@ -28,15 +28,15 @@ docker-all-destroy:
 
 #накачать пакеты из ноды
 node-install:
-	sudo docker exec app_node_1 yarn run dev
+	sudo docker exec node npm install
 
 #собрать пакеты под js и css без уменьшения
 node-dev:
-	sudo docker exec app_node_1 yarn run dev
+	sudo docker exec node yarn run dev
 
 #собрать пакеты под js и css с уменьшением
 node-production:
-	sudo docker exec app_node_1 yarn run production
+	sudo docker exec node yarn run production
 
 #изменить права на каталоги
 perm:
@@ -44,4 +44,10 @@ perm:
 	sudo chown ${USER}:${USER} storage -R
 	if [ -d "node_modules" ]; then sudo chown ${USER}:${USER} node_modules -R; fi
 	if [ -d "public/build" ]; then sudo chown ${USER}:${USER} public/build -R; fi
+
+laravel-version:
+	sudo docker exec php-fpm php -v
+	sudo docker exec php-fpm php artisan -V
+
+
 
