@@ -45,9 +45,17 @@ perm:
 	if [ -d "node_modules" ]; then sudo chown ${USER}:${USER} node_modules -R; fi
 	if [ -d "public/build" ]; then sudo chown ${USER}:${USER} public/build -R; fi
 
+#версия laravel
 laravel-version:
 	sudo docker exec php-fpm php -v
 	sudo docker exec php-fpm php artisan -V
+
+#laravel ссылка на папку storage
+laravel-storage-link:
+	sudo docker exec php-fpm php artisan storage:link
+
+laravel-controller:
+	sudo docker exec php-fpm php artisan make:controller $(controllerName)
 
 
 
