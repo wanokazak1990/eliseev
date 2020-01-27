@@ -12,7 +12,7 @@ docker-down:
 
 #запустить тестовые тесты laravel
 laravel-test:
-	sudo docker exec php-fpm vendor/bin/phpunit
+	sudo docker-compose exec php-fpm vendor/bin/phpunit
 
 #список всех контейнеров
 docker-containers-list:
@@ -57,6 +57,12 @@ laravel-storage-link:
 #laravel создать контролер, в controllerName передаётся имя контролера (можно с / для создания каталога)
 laravel-controller:
 	sudo docker exec php-fpm php artisan make:controller $(controllerName)
+
+laravel-model:
+	sudo docker exec php-fpm php artisan make:model $(modelName)
+
+laravel-request:
+	sudo docker exec php-fpm php artisan make:request $(requestName)
 
 
 
