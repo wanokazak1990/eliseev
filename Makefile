@@ -54,6 +54,7 @@ laravel-version:
 laravel-storage-link:
 	sudo docker exec php-fpm php artisan storage:link
 
+#laravel создать контролер, в controllerName передаётся имя контролера (можно с / для создания каталога)
 laravel-controller:
 	sudo docker exec php-fpm php artisan make:controller $(controllerName)
 
