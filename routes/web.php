@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['namespace'=>'Parts'], function () {
+    Route::get('/','SiteController@index')->name('parts.index');
+    Route::post('/','SiteController@search')->name('parts.search');
+});
+
+Route::group(['namespace'=>'Cart','prefix'=>'cart'], function(){
+    Route::post('/appendcart/{id}', 'CartController@append')->name('cart.append');
+});
+
