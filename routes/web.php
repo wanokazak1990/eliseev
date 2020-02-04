@@ -18,7 +18,7 @@ Route::group(['namespace'=>'Parts'], function () {
     Route::post('/','SiteController@search')->name('parts.search');
 });
 
-Route::group(['namespace'=>'Cart','prefix'=>'cart'], function(){
+Route::group(['namespace'=>'Cart','prefix'=>'cart','middleware'=>'cart'], function(){
     Route::post('/appendcart/{id}', 'CartController@append')->name('cart.append');
 });
 

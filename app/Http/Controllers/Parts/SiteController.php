@@ -11,7 +11,6 @@ class SiteController extends Controller
     
     public function index()
     {
-
         $parts = part::paginate(25);   
         return view('parts.index',compact('parts'));
 
