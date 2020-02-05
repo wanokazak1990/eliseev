@@ -1,16 +1,31 @@
 <?php
 namespace App\Services\CartService;
-
+use App\PartsModule\Part;
 Class CartProduct
 {
     private $productId;
     private $productPrice;
     private $productCount;
 
-    public function __construct($array = array())
+    public function __construct(Part $product)
     {
-        $this->productId = $array[0];
-        $this->productPrice = $array[1];
-        $this->productCount = $array[2];
+        $this->productId = $product->id;
+        $this->productPrice = $product->price;
+        $this->productCount = 1;
+    }
+
+    public function incrementCount()
+    {
+        $this->productCount++;
+    }
+
+    public function getId()
+    {
+        return $this->productId;
+    }
+
+    public function getFullPrice()
+    {
+        return $this->productPrice * $this->productCount;
     }
 }

@@ -42,6 +42,8 @@ node-production:
 perm:
 	sudo chown ${USER}:${USER} bootstrap/cache -R
 	sudo chown ${USER}:${USER} storage -R
+	sudo chmod -R 777 storage
+	sudo chmod -R 777 bootstrap
 	if [ -d "node_modules" ]; then sudo chown ${USER}:${USER} node_modules -R; fi
 	if [ -d "public/build" ]; then sudo chown ${USER}:${USER} public/build -R; fi
 
@@ -63,6 +65,12 @@ laravel-model:
 
 laravel-request:
 	sudo docker exec php-fpm php artisan make:request $(requestName)
+
+laravel-migrate:
+	sudo docker exec php-fpm php artisan migrate
+
+composer-update:
+	sudo docker exec php-fpm composer update
 
 
 

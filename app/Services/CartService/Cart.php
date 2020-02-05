@@ -2,14 +2,29 @@
 namespace App\Services\CartService;
 use Session;
 use App\Services\CartService\CartProduct;
+use App\PartsModule\Part;
+
 class Cart
 {
     private $products = array();
-    
-    private saveCart()
+
+    public function saveCart()
     {
         Session::put('cart',$this->products);
     }
+
+    public function incrementingById($id)
+    {
+        $this->products[$id]->incrementCount();
+    }
+
+    public function findById($id)
+    {
+        if(array_key_exists($id,$this->products))
+            return true;
+        return false;
+    }
+
     public function __construct()
     {
         if(Session::has('cart'))
@@ -18,12 +33,10 @@ class Cart
         }
     }
 
-    public function add($id)
+    public function add(Part $part)
     {
-        $product = new CartProduct([1,'test9',3]);
-        $this->products[] = $product;
-          
-        echo 1;
+        $product = new CartProduct($part);
+        $this->products[$product->getId()] = $product;
     }
 
     public function del($id)
@@ -31,5 +44,13 @@ class Cart
 
     }
 
-
+    public function totalPrice()
+    {
+        $sum = 0;
+        foreach($this->products as $itemProd)
+        {
+            $sum+= $itemProd->getFullPrice();
+        }
+        return $sum;
+    }
 }
