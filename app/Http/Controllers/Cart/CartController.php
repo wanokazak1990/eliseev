@@ -9,6 +9,6 @@ class CartController extends Controller
 {
     public function append(Request $request,Cart $cart)
     {
-        dd($cart);
+        $cart->add($request->id);
     }
 }
