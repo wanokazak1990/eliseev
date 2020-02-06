@@ -53,4 +53,14 @@ class Cart
         }
         return $sum;
     }
+
+    public function totalCount()
+    {
+        $count = 0;
+        foreach($this->products as $itemProd)
+        {
+            $sum+= $itemProd->getCount();
+        }
+        return $sum;
+    }
 }

@@ -28,4 +28,9 @@ Class CartProduct
     {
         return $this->productPrice * $this->productCount;
     }
+
+    public function getCount()
+    {
+        return $this->productCount;
+    }
 }
