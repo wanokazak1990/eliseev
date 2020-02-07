@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -23,14 +23,19 @@
 </head>
 <body>
     <div id="app">
-        
+
         @include('parts.nav')
 
         <main class="container">
-            @yield('content')
+            @section('content')
+
+            @show
         </main>
 
-        
+        @section('modal')
+            @include('parts.modal')
+        @show
+
     </div>
 </body>
 </html>

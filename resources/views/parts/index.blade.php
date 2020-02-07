@@ -13,28 +13,28 @@
                         </tr>
                     </thead>
                 </table>
-                <form action="{{ route('parts.search') }}" method="POST" class="search-parts">      
-                        {{ csrf_field() }}                  
+                <form action="{{ route('parts.search') }}" method="POST" class="search-parts">
+                        {{ csrf_field() }}
                         <label class="btn btn-outline-secondary btn-block text-left ">
-                            <input 
-                                value="code_catalog" 
-                                data-holder="код" 
-                                type="radio" 
-                                name="search_param" 
-                                id="option1" 
-                                autocomplete="off" 
+                            <input
+                                value="code_catalog"
+                                data-holder="код"
+                                type="radio"
+                                name="search_param"
+                                id="option1"
+                                autocomplete="off"
                                 style="position:relative;top:3px;"
                                 {{(@$filter['search_param']=='code_catalog')?'checked':''}}
-                            > по каталожному номеру 
+                            > по каталожному номеру
                         </label>
                         <label class="btn btn-block btn-outline-secondary text-left ">
-                            <input 
-                                value="name" 
-                                data-holder="название" 
-                                type="radio" 
-                                name="search_param" 
-                                id="option2" 
-                                autocomplete="off" 
+                            <input
+                                value="name"
+                                data-holder="название"
+                                type="radio"
+                                name="search_param"
+                                id="option2"
+                                autocomplete="off"
                                 style="position:relative;top:3px;"
                                 {{(@$filter['search_param']=='name')?'checked':''}}
                             > по названию детали
@@ -61,15 +61,15 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2 text-right">
-                                <button 
-                                    class="btn btn-success to-cart" 
+                                <button
+                                    class="btn btn-success to-cart"
                                     data-id="{{$itemPart->id}}"
                                     data-url="{{route('cart.append',['id'=>$itemPart->id])}}"
                                 >В корзину</button>
                                 </div>
                             </div>
                             @endforeach
-                        </tbody>                  
+                        </tbody>
                     </table>
 
                     <div class="text-center my-5">
@@ -79,7 +79,9 @@
                 @endif
 
             </div>
-           
+
         </div>
 
 @endsection
+
+

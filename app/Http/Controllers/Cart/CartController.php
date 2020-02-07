@@ -24,7 +24,8 @@ class CartController extends Controller
         $cart->saveCart();
 
         echo json_encode([
-            'total'=>$cart->totalPrice()
+            'total_price'=>number_format($cart->totalPrice(),0,'',' ').' руб.',
+            'total_count'=>number_format($cart->totalCount(),0,'',' ').' ед.'
         ]);
     }
 }

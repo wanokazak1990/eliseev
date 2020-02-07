@@ -16,7 +16,7 @@ function ballToCart(obj,status=1){
             opacity: 0.05,
             left: cart.offset().left,
             top: cart.offset().top
-        }, 1000, function() {  
+        }, 1000, function() {
             $(this).remove();
     });
 }
@@ -35,10 +35,17 @@ $(document).ready(function(){
         axios
             .post($(this).attr('data-url'))
             .then(response => {
-                console.log("response", response);
+                for(i in response.data)
+                    $(document).find('#'+i).html(response.data[i])
             })
             .catch(error => {
                 console.log("error", error);
             });
+    })
+
+    $(document).on('click','#cart-button',function(){
+        var modal = $('.modal')
+        modal.find('.modal-title').html('Корзина')
+        modal.modal('show')
     })
 })

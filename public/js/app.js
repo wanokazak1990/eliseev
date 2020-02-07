@@ -36806,10 +36806,18 @@ $(document).ready(function () {
     $(document).on('click', '.to-cart', function () {
         ballToCart($(this));
         axios.post($(this).attr('data-url')).then(function (response) {
-            console.log("response", response);
+            for (i in response.data) {
+                $(document).find('#' + i).html(response.data[i]);
+            }
         }).catch(function (error) {
             console.log("error", error);
         });
+    });
+
+    $(document).on('click', '#cart-button', function () {
+        var modal = $('.modal');
+        modal.find('.modal-title').html('Корзина');
+        modal.modal('show');
     });
 });
 

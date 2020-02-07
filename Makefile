@@ -37,7 +37,8 @@ node-dev:
 #собрать пакеты под js и css с уменьшением
 node-production:
 	sudo docker exec node yarn run production
-
+node-watch:
+	sudo docker exec node yarn run watch
 #изменить права на каталоги
 perm:
 	sudo chown ${USER}:${USER} bootstrap/cache -R

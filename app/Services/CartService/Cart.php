@@ -59,8 +59,8 @@ class Cart
         $count = 0;
         foreach($this->products as $itemProd)
         {
-            $sum+= $itemProd->getCount();
+            $count+= $itemProd->getCount();
         }
-        return $sum;
+        return $count;
     }
 }
