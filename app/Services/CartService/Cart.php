@@ -8,6 +8,11 @@ class Cart
 {
     private $products = array();
 
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
     public function saveCart()
     {
         Session::put('cart',$this->products);

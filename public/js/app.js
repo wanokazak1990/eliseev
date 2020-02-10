@@ -36816,6 +36816,12 @@ $(document).ready(function () {
 
     $(document).on('click', '#cart-button', function () {
         var modal = $('.modal');
+        var url = $(this).attr('data-url');
+        axios.post(url).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log("error", error);
+        });
         modal.find('.modal-title').html('Корзина');
         modal.modal('show');
     });

@@ -3,9 +3,9 @@ namespace App\Services\CartService;
 use App\PartsModule\Part;
 Class CartProduct
 {
-    private $productId;
-    private $productPrice;
-    private $productCount;
+    public $productId;
+    public $productPrice;
+    public $productCount;
 
     public function __construct(Part $product)
     {

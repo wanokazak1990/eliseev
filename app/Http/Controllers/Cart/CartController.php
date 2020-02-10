@@ -9,6 +9,11 @@ use App\PartsModule\Part;
 use Session;
 class CartController extends Controller
 {
+    public function getcart(Cart $cart)
+    {
+        return response()->json($cart->getProducts());
+    }
+
     public function append(Request $request,Cart $cart)
     {
 
@@ -23,7 +28,7 @@ class CartController extends Controller
         }
         $cart->saveCart();
 
-        echo json_encode([
+        return response()->json([
             'total_price'=>number_format($cart->totalPrice(),0,'',' ').' руб.',
             'total_count'=>number_format($cart->totalCount(),0,'',' ').' ед.'
         ]);

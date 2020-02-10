@@ -27,7 +27,7 @@
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link cart-in-nav" id="cart-button">
+            <a class="nav-link cart-in-nav" id="cart-button" data-url="{{route('getcart')}}">
                 Корзина
                 <span id="total_price">0 руб.</span> | <span id="total_count">0 ед.</span>
             </a>
