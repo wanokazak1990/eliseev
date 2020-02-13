@@ -11,12 +11,14 @@ class CartController extends Controller
 {
     public function getcart(Cart $cart)
     {
-        return response()->json($cart->getProducts());
+        return response()->json([
+            'view'=>view('parts.cart',compact('cart'))->render(),
+            'status'=>1
+        ]);
     }
 
     public function append(Request $request,Cart $cart)
     {
-
         $status = $request->exists('id');
         if($status==='false')
             return false;
@@ -29,6 +31,23 @@ class CartController extends Controller
         $cart->saveCart();
 
         return response()->json([
+            'product'=>$cart->getProductById($request->id),
+            'total_price'=>number_format($cart->totalPrice(),0,'',' ').' руб.',
+            'total_count'=>number_format($cart->totalCount(),0,'',' ').' ед.'
+        ]);
+    }
+
+    public function remove(Request $request, Cart $cart)
+    {
+        $status = $request->exists('id');
+        if($status==='false')
+            return false;
+        if($cart->findById($request->id))
+            $cart->decrementingById($request->id);
+        $cart->saveCart();
+
+        return response()->json([
+            'product'=>$cart->getProductById($request->id),
             'total_price'=>number_format($cart->totalPrice(),0,'',' ').' руб.',
             'total_count'=>number_format($cart->totalCount(),0,'',' ').' ед.'
         ]);

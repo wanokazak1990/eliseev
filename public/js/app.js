@@ -36794,6 +36794,11 @@ function ballToCart(obj) {
     });
 }
 
+function setCartIndikators(price, count) {
+    $('#total_price').html(price);
+    $('#total_count').html(count);
+}
+
 $(document).ready(function () {
     $(document).on('click', '.search-parts input[type="radio"]', function () {
         $('.search-parts #input-code').attr('placeholder', 'Введите ' + $(this).attr('data-holder')).val('');
@@ -36806,9 +36811,7 @@ $(document).ready(function () {
     $(document).on('click', '.to-cart', function () {
         ballToCart($(this));
         axios.post($(this).attr('data-url')).then(function (response) {
-            for (i in response.data) {
-                $(document).find('#' + i).html(response.data[i]);
-            }
+            setCartIndikators(response.data.total_price, response.data.total_count);
         }).catch(function (error) {
             console.log("error", error);
         });
@@ -36818,12 +36821,46 @@ $(document).ready(function () {
         var modal = $('.modal');
         var url = $(this).attr('data-url');
         axios.post(url).then(function (response) {
-            console.log(response.data);
+            modal.find('.modal-body').html(response.data.view);
         }).catch(function (error) {
             console.log("error", error);
         });
         modal.find('.modal-title').html('Корзина');
         modal.modal('show');
+    });
+
+    $(document).on('click', '.cart-append', function () {
+        var modal = $('.modal');
+        var container = $(this).closest('.row');
+        var counter = container.find('.product-counter');
+        var pricer = container.find('.product-pricer');
+        axios.post($(this).attr('data-url')).then(function (response) {
+            if (response.data.product !== null) {
+                counter.html(response.data.product.productCount);
+                pricer.html(response.data.product.productPrice);
+            }
+            setCartIndikators(response.data.total_price, response.data.total_count);
+        }).catch(function (error) {
+            console.log("error", error);
+        });
+    });
+
+    $(document).on('click', '.cart-remove', function () {
+        var modal = $('.modal');
+        var container = $(this).closest('.row');
+        var counter = container.find('.product-counter');
+        var pricer = container.find('.product-pricer');
+        axios.post($(this).attr('data-url')).then(function (response) {
+            if (response.data.product !== null) {
+                counter.html(response.data.product.productCount);
+                pricer.html(response.data.product.productPrice);
+            } else {
+                container.remove();
+            }
+            setCartIndikators(response.data.total_price, response.data.total_count);
+        }).catch(function (error) {
+            console.log("error", error);
+        });
     });
 });
 

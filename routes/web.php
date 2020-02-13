@@ -21,5 +21,6 @@ Route::group(['namespace'=>'Parts'], function () {
 Route::group(['namespace'=>'Cart','prefix'=>'cart','middleware'=>'cart'], function(){
     Route::post('/getcart','CartController@getcart')->name('getcart');
     Route::post('/appendcart/{id}', 'CartController@append')->name('cart.append');
+    Route::post('removecart/{id}', 'CartController@remove')->name('cart.remove');
 });
 

@@ -23,6 +23,19 @@ class Cart
         $this->products[$id]->incrementCount();
     }
 
+    public function decrementingById($id)
+    {
+        $this->products[$id]->decrementCount();
+        if($this->products[$id]->getCount()<1)
+            unset($this->products[$id]);
+    }
+
+    public function getProductById($id)
+    {
+        if($this->findById($id))
+            return $this->products[$id];
+    }
+
     public function findById($id)
     {
         if(array_key_exists($id,$this->products))
