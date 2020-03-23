@@ -11,6 +11,8 @@
 |
 */
 
+//use Illuminate\Routing\Route;
+
 Auth::routes();
 
 Route::group(['namespace'=>'Parts'], function () {
@@ -24,3 +26,7 @@ Route::group(['namespace'=>'Cart','prefix'=>'cart','middleware'=>'cart'], functi
     Route::post('removecart/{id}', 'CartController@remove')->name('cart.remove');
 });
 
+
+Route::get('/main','TestController@index')->name('test.index');
+Route::post('/addcomment','TestController@addcomment')->name('test.addcomment');
+Route::get('/getform','TestController@getCommentForm')->name('test.getform');

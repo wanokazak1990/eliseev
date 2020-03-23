@@ -20,6 +20,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <meta name="min-name" content="{{ env('MIN_NAME') }}"/>
+    <meta name="max-name" content="{{ env('MAX_NAME') }}"/>
+    <meta name="min-title" content="{{ env('MIN_TITLE') }}"/>
+    <meta name="max-title" content="{{ env('MAX_TITLE') }}"/>
+    <meta name="min-text" content="{{ env('MIN_TEXT') }}"/>
+    <meta name="max-text" content="{{ env('MAX_TEXT') }}"/>
+
+
+    <script src="https://use.fontawesome.com/571d4201e5.js"></script>
+
+
 </head>
 <body>
     <div id="app">
@@ -35,6 +47,22 @@
         @section('modal')
             @include('parts.modal')
         @show
+
+        <div class="footer">
+            <div class="container">
+                <a href="http://www.youtube.com">
+                    <span class="fa fa-youtube"></span>
+                </a>
+
+                <a href="http://www.instagram.com">
+                    <span class="fa fa-instagram"></span>
+                </a>
+
+                <a href="http://www.facebook.com">
+                    <span class="fa fa-facebook"></span>
+                </a>
+            </div>
+        </div>
 
     </div>
 </body>

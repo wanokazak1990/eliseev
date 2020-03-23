@@ -11936,3 +11936,19 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.comment {
+  border: 1px solid #ddd;
+  border-radius: 1px;
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.comment h4 {
+  color: #75642f;
+  font-size: 1.1rem;
+}
+
+.footer a {
+  font-size: 2rem;
+}
+
